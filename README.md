@@ -3,9 +3,9 @@
 Projet académique réalisé dans le cadre du Master I IM/MIAGE
 Université de Haute-Alsace — Faculté des Sciences et Techniques
 
-**Réalisé par :** Younes BENMOUSSA & Ala JILANI
+**Réalisé par :** ANATO Floriane & HAMOUDI Amine
 **Superviseur :** Dr. Karim HAMMOUDI
-**Date :** Mars 2026
+**Date :** 17 Mars 2026
 
 ---
 
