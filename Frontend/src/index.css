@@ -1,0 +1,433 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+/* Layout */
+.layout { display: flex; min-height: 100vh; }
+
+/* Sidebar - style sobre noir/blanc */
+.sidebar {
+  width: 220px;
+  background: #fff;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px 0;
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo {
+  padding: 0 20px 24px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  color: #555;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.sidebar nav a:hover { background: #f5f5f5; color: #111; }
+
+.sidebar nav a.active {
+  background: #f0f0f0;
+  color: #111;
+  font-weight: 600;
+  border-left: 3px solid #111;
+}
+
+.sidebar-user {
+  margin-top: auto;
+  padding: 16px 20px;
+  border-top: 1px solid #eee;
+  font-size: 13px;
+}
+
+.sidebar-user strong { display: block; color: #111; margin-bottom: 2px; }
+.sidebar-user span { color: #888; font-size: 12px; display: block; margin-bottom: 10px; }
+
+.logout-btn {
+  background: #111;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 13px;
+}
+
+.logout-btn:hover { background: #333; }
+
+/* Main */
+.main-content { margin-left: 220px; padding: 32px; flex: 1; }
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.page-header h1 { font-size: 24px; font-weight: 700; color: #111; }
+
+/* Cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  border: 1px solid #eee;
+}
+
+.card-value { font-size: 32px; font-weight: 700; color: #111; }
+.card-label { color: #888; margin-top: 4px; font-size: 13px; }
+
+/* Boutons */
+.btn {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.btn:hover { opacity: 0.85; }
+.btn-primary { background: #111; color: white; }
+.btn-danger { background: #e74c3c; color: white; }
+.btn-success { background: #27ae60; color: white; }
+.btn-warning { background: #f39c12; color: white; }
+.btn-sm { padding: 5px 10px; font-size: 12px; }
+
+/* Table */
+.table-container {
+  background: white;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  border: 1px solid #eee;
+  overflow-x: auto;
+}
+
+.table-container h2 { font-size: 16px; font-weight: 600; color: #111; }
+
+table { width: 100%; border-collapse: collapse; }
+
+thead th {
+  padding: 11px 14px;
+  text-align: left;
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #eee;
+}
+
+tbody td {
+  padding: 13px 14px;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 14px;
+  color: #333;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #fafafa; }
+
+/* Badges */
+.badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.badge-attente { background: #fff3cd; color: #856404; }
+.badge-cours { background: #dbeafe; color: #1e40af; }
+.badge-termine { background: #dcfce7; color: #166534; }
+.badge-livre { background: #f3f4f6; color: #374151; }
+.badge-ok { background: #dcfce7; color: #166534; }
+.badge-alerte { background: #fee2e2; color: #991b1b; font-weight: 700; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  width: 480px;
+  max-width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal h2 { margin-bottom: 20px; font-size: 18px; color: #111; }
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Forms */
+.form-group { margin-bottom: 14px; }
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #444;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #111;
+  outline: none;
+}
+
+/* Filters */
+.filters { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+
+.filters select, .filters input {
+  padding: 7px 12px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  font-size: 13px;
+  background: white;
+}
+
+/* Alerte stock */
+.stock-alert {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 11px 16px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #856404;
+}
+
+.stock-alert-red {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  padding: 11px 16px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #991b1b;
+}
+
+/* Login */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  width: 360px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.login-box h1 { text-align: center; color: #111; margin-bottom: 6px; font-size: 26px; }
+.login-box p { text-align: center; color: #888; margin-bottom: 28px; font-size: 14px; }
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.login-btn:hover { background: #333; }
+
+.error-msg {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 13px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+/* Badge role */
+.role-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #f0f0f0;
+  color: #555;
+  margin-left: 6px;
+}
+
+.role-badge.responsable { background: #111; color: white; }
+
+/* ============ MODE ÉCO ============ */
+.eco-mode {
+  filter: grayscale(100%);
+}
+
+.eco-mode .sidebar {
+  background: #fff;
+  border-right: 2px solid #000;
+}
+
+.eco-mode .sidebar nav a {
+  color: #000;
+}
+
+.eco-mode .sidebar nav a.active {
+  background: #000;
+  color: #fff;
+  border-left: 4px solid #000;
+}
+
+.eco-mode .sidebar-logo {
+  color: #000;
+}
+
+.eco-mode .sidebar-logo span {
+  color: #000;
+}
+
+.eco-mode .btn-primary {
+  background: #000;
+  color: #fff;
+}
+
+.eco-mode .btn-warning {
+  background: #555;
+  color: #fff;
+}
+
+.eco-mode .btn-danger {
+  background: #222;
+  color: #fff;
+  border: 1px solid #000;
+}
+
+.eco-mode .btn-success {
+  background: #333;
+  color: #fff;
+}
+
+.eco-mode .card {
+  box-shadow: none;
+  border: 1px solid #000;
+}
+
+.eco-mode .card-value {
+  color: #000 !important;
+}
+
+.eco-mode .badge {
+  background: #eee !important;
+  color: #000 !important;
+  border: 1px solid #000;
+}
+
+.eco-mode .badge-alerte {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.eco-mode .table-container {
+  box-shadow: none;
+  border: 1px solid #000;
+}
+
+.eco-mode .stock-alert-red {
+  background: #eee;
+  border: 2px solid #000;
+  color: #000;
+}
+
+.eco-mode .modal {
+  box-shadow: none;
+  border: 2px solid #000;
+}
+
+.eco-mode .logout-btn {
+  background: #000;
+}
+
+/* Supprime les animations en mode éco */
+.eco-mode * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Bannière éco visible */
+.eco-banner {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 4px;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
