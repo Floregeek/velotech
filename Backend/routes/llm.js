@@ -13,24 +13,24 @@ router.post('/analyze', authMiddleware, async (req, res) => {
   }
 
   try {
-    const prompt = `Tu es un expert mécanicien vélo. Un technicien te décrit une panne.
+    const prompt = `Tu es un expert mécanicien vélo. Réponds UNIQUEMENT en JSON valide.
 
 Vélo : ${type_velo || 'vélo non précisé'}
-Problème décrit : ${description}
+Problème : ${description}
 
-Réponds en JSON avec exactement cette structure :
+Réponds avec exactement ce JSON et rien d'autre :
 {
   "causes": ["cause 1", "cause 2", "cause 3"],
   "pieces": ["pièce 1", "pièce 2"],
   "etapes": ["étape 1", "étape 2", "étape 3", "étape 4"]
-}
-
-Réponds UNIQUEMENT avec le JSON, sans texte avant ou après.`;
+}`;
 
     const result = await callLLM(
-      [{ role: 'user', content: prompt }],
-      'Tu es un expert mécanicien vélo spécialisé.'
-    );
+  [{ role: 'user', content: prompt }],
+  `Tu es un expert mécanicien vélo. 
+   Utilise le vocabulaire technique correct : dérailleur, cassette, plateau, shifter, plaquettes, câble.
+   Réponds UNIQUEMENT en JSON valide sans texte autour.`
+  );
 
     const rawResponse = result.content;
     const tokens = result.tokens;
@@ -185,17 +185,34 @@ ${topPieces.length > 0
   : '- Pas encore de données'}
 
 === FIN DU CONTEXTE ===`;
+const systemPrompt = `Tu es VeloBot, expert mécanicien vélo de l'atelier VeloTech.
 
-    const systemPrompt = `Tu es VeloBot, expert mécanicien vélo de l'atelier VeloTech.
+VOCABULAIRE TECHNIQUE OBLIGATOIRE :
+- Dérailleur arrière/avant
+- Câble de dérailleur
+- Cassette = pignons arrière
+- Plateau = grand pignon avant
+- Shifter = manette de vitesse
+- Plaquettes de frein
+- Tension du câble
+- Vis de butée H et L
+- Tendeur de câble
+- Chaîne (pas "courroie")
+- Pignons (pas "cogs")
 
+DONNÉES DE L'ATELIER :
 ${contexteAtelier}
 
-INSTRUCTIONS :
-- Réponds UNIQUEMENT sur le vélo et les données de l'atelier ci-dessus.
-- Utilise les vraies données de l'atelier pour répondre précisément.
-- Quand on te demande quel fournisseur contacter pour une pièce, utilise les données fournisseurs.
-- Si hors domaine vélo, refuse poliment.
-- Réponds en français, de façon claire et professionnelle.`;
+RÈGLES STRICTES :
+- MAXIMUM 5 lignes ou 5 étapes par réponse, pas plus
+- Pas d'introduction, commence directement par la réponse
+- Pas de conclusion comme "Si vous ne vous sentez pas..."
+- Pas de "Il est recommandé de consulter un professionnel"
+- Utilise le vocabulaire technique ci-dessus obligatoirement
+- Questions vélo → réponds avec ton expertise
+- Questions atelier → utilise les données ci-dessus
+- Questions hors vélo → refuse en une phrase courte
+- Réponds en français uniquement`;
 
     const result = await callLLM(messages, systemPrompt);
 

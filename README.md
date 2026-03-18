@@ -3,7 +3,7 @@
 Projet académique réalisé dans le cadre du Master I IM/MIAGE
 Université de Haute-Alsace — Faculté des Sciences et Techniques
 
-**Réalisé par :** ANATO Floriane & HAMOUDI Amine
+**Cours :** Méthodes Agiles
 **Superviseur :** Dr. Karim HAMMOUDI
 **Date :** 17 Mars 2026
 
@@ -58,7 +58,7 @@ Il intègre un assistant IA (LLM) capable de :
 2. Colle le contenu du fichier `database.sql`
 3. Clique **Exécuter**
 
-✅ Tu dois voir la base `velotech` avec 9 tables créées.
+✅ Tu dois voir la base `velotech` avec 8 tables créées.
 
 ---
 
@@ -90,10 +90,10 @@ LLM_MODE=ollama
 # 1. Télécharge et installe Ollama sur https://ollama.com/download
 # 2. Redémarre ton PC
 # 3. Télécharge le modèle léger
-ollama pull llama3.2:1b
+ollama pull qwen2.5:3b
 
 # 4. Vérifie que ça fonctionne
-ollama run llama3.2:1b "Bonjour, tu es expert vélo ?"
+ollama run qwen2.5:3b "Bonjour, tu es expert vélo ?"
 ```
 
 > ℹ️ Sur Windows, Ollama se lance automatiquement au démarrage.

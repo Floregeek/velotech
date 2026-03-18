@@ -17,7 +17,7 @@ const callOllama = async (messages, systemPrompt = '') => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'llama3.2:1b',
+      model: 'qwen2.5:3b',
       messages: allMessages,
       stream: false
     })
