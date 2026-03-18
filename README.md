@@ -293,6 +293,7 @@ velotech/
 ### Test 6 — Alerte stock
 1. Modifier une pièce avec quantité ≤ seuil
 2. ✅ Badge rouge + bannière d'alerte avec fournisseur à contacter
+3. Vous pouvez essayer avec cette pièce pour le test Dérailleur arrière Shimano Alivio il reste une utilisation et il sera en baisse du seuil
 
 ### Test 7 — Chat VeloBot avec RAG
 1. Aller dans **🤖 Assistant IA**
