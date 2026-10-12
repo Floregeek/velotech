@@ -68,10 +68,10 @@ Dans le dossier `backend/`, crée un fichier `.env` :
 
 ```
 DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=velotech
-JWT_SECRET=velotechsecret
+DB_USER=....
+DB_PASSWORD=....
+DB_NAME=....
+JWT_SECRET=....
 PORT=5000
 GROQ_API_KEY=ta_clé_groq_ici
 OLLAMA_URL=http://localhost:11434
@@ -143,15 +143,15 @@ npm start
 
 | Utilisateur | Mot de passe | Rôle | Accès |
 |---|---|---|---|
-| tech1 | password | Technicien | Réparations + Assistant IA + VeloBot |
-| admin | password | Responsable | Dashboard + Stock + Fournisseurs + Utilisateurs + Rapports |
+| compte 1 | un mot de passe  | Technicien | Réparations + Assistant IA + VeloBot |
+| compte 2 | un mot de passe | Responsable | Dashboard + Stock + Fournisseurs + Utilisateurs + Rapports |
 
 ### Client (http://localhost:3000/client)
 
 | Utilisateur | Mot de passe | Accès |
 |---|---|---|
-| jean.dupont | password | Suivi réparations |
-| sophie.martin | password | Suivi réparations |
+| compte utilisateur 1 | un mot de passe | Suivi réparations |
+| compte utilisateur 2  | un mot de passe | Suivi réparations |
 
 ---
 
@@ -266,11 +266,11 @@ velotech/
 
 ### Test 1 — Connexion technicien
 1. Aller sur http://localhost:3000/login
-2. Se connecter avec `tech1` / `password`
+2. Se connecter avec un compte technicien 
 3. ✅ Menu : Tableau de bord + Réparations + Assistant IA
 
 ### Test 2 — Connexion responsable
-1. Se connecter avec `admin` / `password`
+1. Se connecter avec responsable
 2. ✅ Menu : Dashboard + Stock + Fournisseurs + Utilisateurs + Rapports
 3. ✅ Impossible d'accéder à /repairs (redirigé automatiquement)
 
